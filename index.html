@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariar Technologies | Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(107, 182, 255, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 214, 107, 0.08) 0%, transparent 30%);
+            z-index: 1;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            padding: 3.5rem;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 25px 50px rgba(107, 107, 255, 0.1),
+                0 10px 20px rgba(107, 107, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        /* Heart Animation */
+        .heart-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 3;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            animation: heartbeat 1.5s infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+        
+        .logo-container {
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b6b 0%, #6b6bff 50%, #6bd4ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff, #6bd4ff);
+            border-radius: 2px;
+            animation: lineWidth 3s ease-in-out infinite;
+        }
+        
+        @keyframes lineWidth {
+            0%, 100% { width: 150px; }
+            50% { width: 180px; }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+        
+        .construction-section {
+            margin: 3.5rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 255, 0.95));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(107, 107, 255, 0.08);
+        }
+        
+        .construction-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff, #6bd4ff);
+        }
+        
+        .construction-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: float 5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(107, 107, 255, 0.15));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+        
+        .construction-text {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+            letter-spacing: 1px;
+        }
+        
+        .construction-subtext {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        .progress-container {
+            margin-top: 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .services-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 25px rgba(107, 107, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(107, 107, 255, 0.15);
+            border-color: rgba(107, 107, 255, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s;
+            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .service-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .contact-section {
+            margin: 4rem 0 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 255, 0.95));
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 15px 35px rgba(107, 107, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+        }
+        
+        .contact-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        
+        .contact-person {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #333;
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid rgba(107, 107, 255, 0.1);
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            padding: 1.2rem 2rem;
+            background: white;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+        }
+        
+        .contact-item:hover {
+            border-color: #6b6bff;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(107, 107, 255, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 3rem;
+            padding: 1.3rem 3rem;
+            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 35px rgba(107, 107, 255, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(107, 107, 255, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(107, 107, 255, 0.12));
+            border-radius: 50%;
+            animation: floatShape 20s infinite linear;
+        }
+        
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, 50px) rotate(120deg); }
+            66% { transform: translate(-20px, 80px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 5%;
+            animation-duration: 25s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 10%;
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        
+        .shape:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 15%;
+            left: 10%;
+            animation-duration: 15s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            bottom: 5%;
+            right: 5%;
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+        
+        /* Celebration particles */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                width: 95%;
+                padding: 2.5rem;
+            }
+            
+            .logo-text {
+                font-size: 3rem;
+            }
+            
+            .construction-text {
+                font-size: 2.5rem;
+            }
+            
+            .construction-subtext {
+                font-size: 1.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 2rem;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .construction-text {
+                font-size: 2rem;
+            }
+            
+            .construction-section, .contact-section {
+                padding: 2rem;
+            }
+            
+            .contact-details {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .cta-button {
+                padding: 1.1rem 2.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container">
+        <div class="heart" id="heart">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+    
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <h1 class="logo-text">ARIAR TECHNOLOGIES</h1>
+        </div>
+        
+        <p class="tagline">Innovating Tomorrow's Digital Landscape</p>
+        
+        <div class="construction-section">
+            <div class="construction-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h2 class="construction-text">Something Amazing Is Coming</h2>
+            <p class="construction-subtext">We're currently crafting an extraordinary digital experience for you. While we perfect our platform, we're ready to build your next breakthrough project.</p>
+            
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="services-section">
+            <h3 class="section-title">Our Services</h3>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4 class="service-title">Website Development</h4>
+                    <p class="service-desc">Custom, responsive websites with modern design and seamless user experience.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4 class="service-title">Mobile Apps</h4>
+                    <p class="service-desc">Native iOS and Android applications with intuitive interfaces and robust performance.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4 class="service-title">IT Solutions</h4>
+                    <p class="service-desc">Comprehensive IT services and enterprise solutions for businesses of all sizes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4 class="service-title">Cloud Services</h4>
+                    <p class="service-desc">Scalable cloud infrastructure and migration services for modern businesses.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <h3 class="contact-title">Start Your Project Today</h3>
+            <p class="contact-subtitle">While we're building our platform, let us build yours. Contact us for a complimentary consultation about your digital needs.</p>
+            
+            <div class="contact-person">
+                Syed Luqmaan
+            </div>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <span>9606398408</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <span>9620817001</span>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <span>contact@ariartech.com</span>
+                </div>
+            </div>
+            
+            <a href="tel:+919606398408" class="cta-button">
+                <i class="fas fa-calendar-alt"></i>
+                Book a Free Consultation
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2026 Ariar Technologies. All Rights Reserved. | Crafting Digital Excellence</p>
+            <p style="margin-top: 10px; color: #ff6b6b; font-size: 0.8rem;">
+                Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for Ariar Technologies
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Animated progress bar
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        let progress = 0;
+        const targetProgress = 82;
+        
+        function animateProgress() {
+            if (progress < targetProgress) {
+                progress += 1;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${progress}%`;
+                
+                setTimeout(animateProgress, 30);
+            }
+        }
+        
+        // Floating shapes animation
+        const shapesContainer = document.querySelector('.floating-shapes');
+        
+        for (let i = 0; i < 6; i++) {
+            const shape = document.createElement('div');
+            const size = Math.random() * 60 + 30;
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 20 + 20;
+            const delay = Math.random() * 5;
+            const colors = [
+                'rgba(255, 107, 107, 0.15)',
+                'rgba(107, 107, 255, 0.15)',
+                'rgba(107, 212, 255, 0.15)'
+            ];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.top = `${top}%`;
+            shape.style.left = `${left}%`;
+            shape.style.animationDuration = `${duration}s`;
+            shape.style.animationDelay = `${delay}s`;
+            shape.style.background = `linear-gradient(135deg, ${color}, ${color.replace('0.15', '0.08')})`;
+            shape.style.borderRadius = Math.random() > 0.5 ? '50%' : '10px';
+            
+            shape.classList.add('shape');
+            shapesContainer.appendChild(shape);
+        }
+        
+        // Service cards hover effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.service-icon');
+                icon.style.transform = 'scale(1.3) rotate(8deg)';
+                icon.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.service-icon');
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Contact items click functionality
+        document.querySelectorAll('.contact-item').forEach(item => {
+            if (item.textContent.includes('9606398408') || item.textContent.includes('9620817001')) {
+                item.style.cursor = 'pointer';
+                item.title = 'Click to call';
+                
+                item.addEventListener('click', function() {
+                    const phoneNumber = this.textContent.trim().replace(/\s+/g, '');
+                    window.location.href = `tel:${phoneNumber}`;
+                });
+            }
+        });
+        
+        // Typing effect for tagline
+        const taglineText = "Innovating Tomorrow's Digital Landscape";
+        const taglineElement = document.querySelector('.tagline');
+        let taglineIndex = 0;
+        
+        function typeTagline() {
+            if (taglineIndex < taglineText.length) {
+                taglineElement.textContent = taglineText.substring(0, taglineIndex + 1);
+                taglineIndex++;
+                setTimeout(typeTagline, 70);
+            }
+        }
+        
+        // Heart click celebration
+        const heart = document.getElementById('heart');
+        heart.addEventListener('click', createParticles);
+        
+        function createParticles() {
+            const colors = ['#ff6b6b', '#6b6bff', '#6bd4ff', '#ffd66b'];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 10 + 5;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const animationDuration = Math.random() * 2 + 1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+                
+                // Add to body
+                document.body.appendChild(particle);
+                
+                // Animate
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 100 + 50;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                let x = left;
+                let y = top;
+                let opacity = 1;
+                
+                function animateParticle() {
+                    x += vx * 0.01;
+                    y += vy * 0.01;
+                    opacity -= 0.02;
+                    
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    particle.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animateParticle);
+                    } else {
+                        particle.remove();
+                    }
+                }
+                
+                animateParticle();
+            }
+            
+            // Change heart color temporarily
+            heart.style.color = '#ffd66b';
+            setTimeout(() => {
+                heart.style.color = '#ff6b6b';
+            }, 300);
+        }
+        
+        // Start animations when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            // Start progress animation after delay
+            setTimeout(animateProgress, 800);
+            
+            // Start typing effect
+            setTimeout(() => {
+                taglineElement.textContent = "";
+                typeTagline();
+            }, 1000);
+            
+            // Add subtle pulse animation to CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            setInterval(() => {
+                ctaButton.style.transform = 'translateY(-5px) scale(1.02)';
+                setTimeout(() => {
+                    ctaButton.style.transform = 'translateY(-5px) scale(1)';
+                }, 500);
+            }, 3000);
+            
+            // Auto create particles every 5 seconds
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createParticles();
+                }
+            }, 5000);
+        });
+        
+        // Add gentle hover effect to container
+        const container = document.querySelector('.container');
+        container.addEventListener('mouseenter', () => {
+            container.style.transform = 'translateY(-5px)';
+            container.style.transition = 'transform 0.3s ease';
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            container.style.transform = 'translateY(0)';
+        });
+    </script>
+</body>
+</html>
