@@ -2,88 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Ariar Technologies | Coming Soon</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* CSS Reset with responsive considerations */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
         
         body {
-            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-            color: #333;
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img, video, canvas {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* CSS Variables for Responsive Design */
+        :root {
+            /* Color Theme */
+            --primary-dark: #0A2540;
+            --accent-teal: #14B8A6;
+            --background-white: #FFFFFF;
+            --text-dark: #1F2937;
+            --text-muted: #6B7280;
+            --border-light: #E5E7EB;
+            --gradient-light: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            --gradient-dark: linear-gradient(135deg, #0A2540 0%, #083358 100%);
+            --whatsapp-green: #25D366;
+            
+            /* Responsive Breakpoints */
+            --mobile: 480px;
+            --tablet: 768px;
+            --desktop: 1024px;
+            --large-desktop: 1200px;
+            
+            /* Fluid Typography */
+            --fluid-min: 16px;
+            --fluid-max: 18px;
+            --fluid-target: calc(var(--fluid-min) + (var(--fluid-max) - var(--fluid-min)) * ((100vw - 320px) / (1920 - 320)));
+            
+            /* Spacing Variables */
+            --space-xs: clamp(0.5rem, 2vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 3vw, 1rem);
+            --space-md: clamp(1rem, 4vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 6vw, 2.5rem);
+            --space-xl: clamp(2rem, 8vw, 3.5rem);
+            
+            /* Border Radius */
+            --radius-sm: clamp(0.5rem, 2vw, 0.75rem);
+            --radius-md: clamp(0.75rem, 3vw, 1rem);
+            --radius-lg: clamp(1rem, 4vw, 1.5rem);
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(10, 37, 64, 0.05);
+            --shadow-md: 0 4px 8px rgba(10, 37, 64, 0.1);
+            --shadow-lg: 0 8px 16px rgba(10, 37, 64, 0.15);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Base Body Styles */
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            background: var(--gradient-light);
+            color: var(--text-dark);
             min-height: 100vh;
-            overflow-x: hidden;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: var(--space-md);
+            line-height: 1.6;
+            overflow-x: hidden;
             position: relative;
-            font-family: 'Poppins', sans-serif;
-            padding: 20px;
         }
         
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Background Pattern */
+        .background-pattern {
+            position: fixed;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.08) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(107, 182, 255, 0.08) 0%, transparent 20%),
-                radial-gradient(circle at 50% 50%, rgba(255, 214, 107, 0.08) 0%, transparent 30%);
+            top: 0;
+            left: 0;
             z-index: 1;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(20, 184, 166, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(10, 37, 64, 0.03) 0%, transparent 25%);
+            pointer-events: none;
         }
         
+        /* Main Container */
         .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
             width: 100%;
-            text-align: center;
-            padding: 3.5rem;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 
-                0 25px 50px rgba(107, 107, 255, 0.1),
-                0 10px 20px rgba(107, 107, 255, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            overflow: hidden;
-            animation: fadeInUp 1s ease-out;
+            max-width: 1400px;
+            min-width: 320px;
+            padding: var(--space-xl);
+            background: var(--background-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s var(--transition-normal);
         }
         
         @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
         /* Heart Animation */
         .heart-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 3;
+            position: fixed;
+            top: var(--space-md);
+            right: var(--space-md);
+            z-index: 100;
         }
         
         .heart {
-            color: #ff6b6b;
-            font-size: 1.8rem;
+            color: var(--accent-teal);
+            font-size: clamp(1.5rem, 4vw, 2rem);
             animation: heartbeat 1.5s infinite;
             cursor: pointer;
+            transition: var(--transition-fast);
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-xs);
+            border-radius: 50%;
+            box-shadow: var(--shadow-md);
         }
         
         @keyframes heartbeat {
@@ -93,62 +164,60 @@
             75% { transform: scale(1.05); }
         }
         
+        /* Logo Section */
         .logo-container {
-            margin-bottom: 2.5rem;
-            position: relative;
-            display: inline-block;
+            text-align: center;
+            margin-bottom: var(--space-xl);
         }
         
         .logo-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ff6b6b 0%, #6b6bff 50%, #6bd4ff 100%);
+            font-weight: 900;
+            font-size: clamp(2rem, 8vw, 4rem);
+            line-height: 1.1;
+            background: var(--gradient-dark);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 12px;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.5px;
         }
         
         .logo-text::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
+            display: block;
+            width: clamp(80px, 30vw, 200px);
             height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff, #6bd4ff);
+            background: var(--accent-teal);
+            margin: var(--space-sm) auto;
             border-radius: 2px;
             animation: lineWidth 3s ease-in-out infinite;
         }
         
         @keyframes lineWidth {
-            0%, 100% { width: 150px; }
-            50% { width: 180px; }
+            0%, 100% { width: clamp(80px, 25vw, 180px); }
+            50% { width: clamp(100px, 35vw, 220px); }
         }
         
         .tagline {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: var(--text-muted);
             font-weight: 400;
+            letter-spacing: 0.3px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
+        /* Coming Soon Section */
         .construction-section {
-            margin: 3.5rem 0;
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 255, 0.95));
-            border-radius: 20px;
+            background: var(--background-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 15px 35px rgba(107, 107, 255, 0.08);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
         }
         
         .construction-section::before {
@@ -158,64 +227,65 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff, #6bd4ff);
+            background: var(--accent-teal);
         }
         
         .construction-icon {
-            font-size: 4.5rem;
-            margin-bottom: 1.8rem;
-            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            color: var(--accent-teal);
+            margin-bottom: var(--space-lg);
             animation: float 5s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(107, 107, 255, 0.15));
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-15px) scale(1.05); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
         
         .construction-text {
-            font-size: 3.2rem;
+            font-size: clamp(1.5rem, 6vw, 3rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #333;
-            letter-spacing: 1px;
+            line-height: 1.2;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-md);
         }
         
         .construction-subtext {
-            font-size: 1.3rem;
-            color: #666;
-            max-width: 750px;
-            margin: 0 auto 2.5rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
             line-height: 1.7;
-            font-weight: 300;
         }
         
+        /* Progress Bar */
         .progress-container {
-            margin-top: 2.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
         }
         
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            color: #555;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        
+        .progress-label span {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            color: var(--text-muted);
             font-weight: 500;
         }
         
         .progress-bar {
             height: 10px;
             width: 100%;
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--border-light);
             border-radius: 5px;
             overflow: hidden;
             position: relative;
@@ -224,11 +294,10 @@
         .progress {
             height: 100%;
             width: 0;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+            background: var(--accent-teal);
             border-radius: 5px;
             position: relative;
-            overflow: hidden;
-            transition: width 1.5s ease-in-out;
+            transition: width 1.5s var(--transition-normal);
         }
         
         .progress::after {
@@ -247,108 +316,171 @@
             100% { transform: translateX(100%); }
         }
         
+        /* SERVICES SECTION */
         .services-section {
-            margin: 4rem 0;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            color: #333;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
-            border-radius: 2px;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 10px 25px rgba(107, 107, 255, 0.08);
+            background: var(--gradient-dark);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
             position: relative;
             overflow: hidden;
         }
         
-        .service-card::before {
+        .services-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
+            background: var(--accent-teal);
         }
         
-        .service-card:hover::before {
-            transform: scaleX(1);
+        .section-title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: var(--space-sm);
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+        
+        /* Service Categories */
+        .service-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+        }
+        
+        .category-btn {
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(0.85rem, 3vw, 0.95rem);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            white-space: nowrap;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--accent-teal);
+            border-color: var(--accent-teal);
+        }
+        
+        /* Services Grid - Responsive */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            transition: var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(107, 107, 255, 0.15);
-            border-color: rgba(107, 107, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-teal);
+        }
+        
+        .service-icon-wrapper {
+            width: clamp(60px, 15vw, 80px);
+            height: clamp(60px, 15vw, 80px);
+            background: var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            transition: var(--transition-normal);
+        }
+        
+        .service-card:hover .service-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--primary-dark);
         }
         
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.4s;
-            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .service-card:hover .service-icon {
-            transform: scale(1.2) rotate(5deg);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: white;
         }
         
         .service-title {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: #333;
+            margin-bottom: var(--space-sm);
+            color: var(--primary-dark);
+            text-align: center;
         }
         
-        .service-desc {
-            font-size: 0.95rem;
-            color: #666;
+        .service-description {
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+            color: var(--text-muted);
             line-height: 1.6;
+            margin-bottom: var(--space-md);
+            text-align: center;
+            flex-grow: 1;
         }
         
+        .service-features {
+            list-style: none;
+            border-top: 1px solid var(--border-light);
+            padding-top: var(--space-md);
+            margin-top: auto;
+        }
+        
+        .service-features li {
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+            font-size: clamp(0.85rem, 3vw, 0.9rem);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .service-features li i {
+            color: var(--accent-teal);
+            margin-right: var(--space-sm);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        /* CONTACT SECTION */
         .contact-section {
-            margin: 4rem 0 3rem;
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 255, 0.95));
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            box-shadow: 0 15px 35px rgba(107, 107, 255, 0.08);
+            background: var(--gradient-dark);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
             position: relative;
             overflow: hidden;
+            color: white;
         }
         
         .contact-section::before {
@@ -358,20 +490,22 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #6b6bff);
+            background: var(--accent-teal);
         }
         
         .contact-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #333;
+            font-size: clamp(1.75rem, 6vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: var(--space-sm);
         }
         
         .contact-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2.5rem;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: var(--space-xl);
+            text-align: center;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -379,541 +513,831 @@
             font-weight: 300;
         }
         
-        .contact-person {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #333;
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: white;
-            border-radius: 50px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            border: 2px solid rgba(107, 107, 255, 0.1);
+        /* Contact Grid - Responsive */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
         }
         
-        .contact-details {
+        @media (min-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1.5fr;
+            }
+        }
+        
+        /* Contact Info Box */
+        .contact-info-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-person-card {
+            background: var(--primary-dark);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid var(--accent-teal);
+        }
+        
+        .contact-person-name {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .contact-person-title {
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+            color: var(--accent-teal);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            transition: var(--transition-normal);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-teal);
+        }
+        
+        .method-icon {
+            width: clamp(45px, 10vw, 50px);
+            height: clamp(45px, 10vw, 50px);
+            background: var(--accent-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            flex-shrink: 0;
+        }
+        
+        .method-details h4 {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: var(--primary-dark);
+        }
+        
+        .method-details p {
+            font-size: clamp(0.85rem, 3vw, 0.9rem);
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        
+        /* Contact Form Placeholder */
+        .contact-form-placeholder {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .form-icon {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--accent-teal);
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-title {
+            font-size: clamp(1.25rem, 4vw, 1.8rem);
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-description {
+            color: var(--text-muted);
+            margin-bottom: var(--space-lg);
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+        }
+        
+        /* Action Buttons */
+        .contact-actions {
             display: flex;
             flex-wrap: wrap;
+            gap: var(--space-md);
             justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
         }
         
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.1rem;
-            padding: 1.2rem 2rem;
-            background: white;
-            border-radius: 50px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            border: 2px solid transparent;
-        }
-        
-        .contact-item:hover {
-            border-color: #6b6bff;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(107, 107, 255, 0.15);
-        }
-        
-        .contact-icon {
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .cta-button {
+        .action-button {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            margin-top: 3rem;
-            padding: 1.3rem 3rem;
-            background: linear-gradient(135deg, #ff6b6b, #6b6bff);
-            color: white;
-            font-size: 1.1rem;
+            justify-content: center;
+            gap: var(--space-sm);
+            padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
             font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 
-                0 15px 35px rgba(107, 107, 255, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
+            transition: var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            min-width: min(180px, 100%);
+            flex: 1 0 auto;
         }
         
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.7s;
+        .action-button.primary {
+            background: var(--accent-teal);
+            color: white;
         }
         
-        .cta-button:hover::before {
-            left: 100%;
+        .action-button.primary:hover {
+            background: #0FA393;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
         }
         
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 20px 40px rgba(107, 107, 255, 0.35),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        .action-button.whatsapp {
+            background: var(--whatsapp-green);
+            color: white;
         }
         
-        .footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            font-size: 0.9rem;
-            color: #888;
+        .action-button.whatsapp:hover {
+            background: #1DA851;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .action-button.secondary {
+            background: white;
+            color: var(--primary-dark);
+            border: 2px solid var(--border-light);
+        }
+        
+        .action-button.secondary:hover {
+            border-color: var(--accent-teal);
+            transform: translateY(-3px);
+        }
+        
+        /* Additional CTA Section */
+        .cta-section {
             text-align: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: var(--space-lg);
         }
         
-        .floating-shapes {
-            position: absolute;
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: var(--space-lg);
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+            color: var(--text-muted);
+            text-align: center;
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            pointer-events: none;
         }
         
-        .shape {
-            position: absolute;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(107, 107, 255, 0.12));
-            border-radius: 50%;
-            animation: floatShape 20s infinite linear;
+        .made-with-love {
+            margin-top: var(--space-sm);
+            color: var(--accent-teal);
+            font-size: clamp(0.75rem, 2.5vw, 0.8rem);
         }
         
-        @keyframes floatShape {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, 50px) rotate(120deg); }
-            66% { transform: translate(-20px, 80px) rotate(240deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .service-card:hover,
+            .contact-method:hover,
+            .action-button:hover,
+            .category-btn:hover {
+                transform: none;
+            }
+            
+            .service-card:active,
+            .contact-method:active,
+            .action-button:active,
+            .category-btn:active {
+                transform: scale(0.98);
+            }
         }
         
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 5%;
-            animation-duration: 25s;
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            .container,
+            .construction-section,
+            .contact-info-box,
+            .contact-form-placeholder,
+            .service-card {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .service-card,
+            .contact-method,
+            .action-button.secondary {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
+            .service-title,
+            .form-title,
+            .method-details h4 {
+                color: white;
+            }
+            
+            .service-description,
+            .form-description,
+            .method-details p,
+            .service-features li {
+                color: rgba(255, 255, 255, 0.7);
+            }
         }
         
-        .shape:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            right: 10%;
-            animation-duration: 20s;
-            animation-direction: reverse;
-        }
-        
-        .shape:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            bottom: 15%;
-            left: 10%;
-            animation-duration: 15s;
-        }
-        
-        .shape:nth-child(4) {
-            width: 100px;
-            height: 100px;
-            bottom: 5%;
-            right: 5%;
-            animation-duration: 30s;
-            animation-direction: reverse;
-        }
-        
-        /* Celebration particles */
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        @media (max-width: 992px) {
+        /* Print Styles */
+        @media print {
+            .heart-container,
+            .background-pattern {
+                display: none;
+            }
+            
             .container {
-                width: 95%;
-                padding: 2.5rem;
+                box-shadow: none;
+                border: 1px solid #000;
             }
             
-            .logo-text {
-                font-size: 3rem;
+            .action-button {
+                border: 1px solid #000;
+                color: #000;
+                background: none;
+            }
+        }
+        
+        /* Very Small Screens (Below 320px) */
+        @media (max-width: 320px) {
+            body {
+                padding: var(--space-sm);
             }
             
-            .construction-text {
-                font-size: 2.5rem;
+            .container {
+                padding: var(--space-lg);
             }
             
-            .construction-subtext {
-                font-size: 1.2rem;
+            .construction-section,
+            .services-section,
+            .contact-section {
+                padding: var(--space-lg);
+            }
+            
+            .service-categories {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .category-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* Large Screens (Above 1920px) */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
             }
             
             .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 1.5rem;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
         
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
+        /* Landscape Mode Optimization */
+        @media (orientation: landscape) and (max-height: 600px) {
             .container {
-                padding: 2rem;
+                margin: var(--space-md) auto;
+                max-height: 90vh;
+                overflow-y: auto;
             }
             
-            .logo-text {
-                font-size: 2.5rem;
+            .logo-container {
+                margin-bottom: var(--space-lg);
             }
             
-            .construction-text {
-                font-size: 2rem;
+            .construction-section,
+            .services-section,
+            .contact-section {
+                margin: var(--space-lg) 0;
+                padding: var(--space-lg);
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
             
-            .construction-section, .contact-section {
-                padding: 2rem;
-            }
-            
-            .contact-details {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-item {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            .cta-button {
-                padding: 1.1rem 2.5rem;
-                font-size: 1rem;
+            .heart,
+            .construction-icon,
+            .progress::after,
+            .logo-text::after {
+                animation: none !important;
             }
         }
     </style>
 </head>
 <body>
+    <div class="background-pattern"></div>
+    
     <div class="heart-container">
-        <div class="heart" id="heart">
-            <i class="fas fa-heart"></i>
+        <div class="heart" id="heart" aria-label="Like this website" role="button" tabindex="0">
+            <i class="fas fa-heart" aria-hidden="true"></i>
         </div>
     </div>
     
-    <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    
-    <div class="container">
+    <div class="container" role="main">
         <div class="logo-container">
             <h1 class="logo-text">ARIAR TECHNOLOGIES</h1>
+            <p class="tagline" id="tagline"></p>
         </div>
         
-        <p class="tagline">Innovating Tomorrow's Digital Landscape</p>
-        
-        <div class="construction-section">
-            <div class="construction-icon">
+        <section class="construction-section" aria-labelledby="construction-heading">
+            <div class="construction-icon" aria-hidden="true">
                 <i class="fas fa-tools"></i>
             </div>
-            <h2 class="construction-text">Something Amazing Is Coming</h2>
-            <p class="construction-subtext">We're currently crafting an extraordinary digital experience for you. While we perfect our platform, we're ready to build your next breakthrough project.</p>
+            <h2 class="construction-text" id="construction-heading">Something Amazing Is Coming</h2>
+            <p class="construction-subtext">
+                We're currently crafting an extraordinary digital experience for you. While we perfect our platform, we're ready to build your next breakthrough project.
+            </p>
             
             <div class="progress-container">
                 <div class="progress-label">
                     <span>Development Progress</span>
-                    <span id="progress-text">0%</span>
+                    <span id="progress-text" aria-live="polite">0%</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress" id="progress-bar"></div>
+                    <div class="progress" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div class="services-section">
-            <h3 class="section-title">Our Services</h3>
+        <!-- SERVICES SECTION -->
+        <section class="services-section" aria-labelledby="services-heading">
+            <h3 class="section-title" id="services-heading">Our Professional Services</h3>
+            <p class="section-subtitle">
+                We deliver cutting-edge technology solutions that drive business growth and digital transformation
+            </p>
+            
+            <div class="service-categories" role="tablist">
+                <button class="category-btn active" data-category="all" role="tab" aria-selected="true">All Services</button>
+                <button class="category-btn" data-category="development" role="tab" aria-selected="false">Development</button>
+                <button class="category-btn" data-category="cloud" role="tab" aria-selected="false">Cloud & DevOps</button>
+                <button class="category-btn" data-category="consulting" role="tab" aria-selected="false">Consulting</button>
+            </div>
             
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
+                <article class="service-card" data-category="development">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-code service-icon" aria-hidden="true"></i>
                     </div>
-                    <h4 class="service-title">Website Development</h4>
-                    <p class="service-desc">Custom, responsive websites with modern design and seamless user experience.</p>
-                </div>
+                    <h4 class="service-title">Custom Web Development</h4>
+                    <p class="service-description">
+                        Build responsive, high-performance websites and web applications tailored to your business needs.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Responsive Design</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> E-commerce Solutions</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> CMS Development</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> API Integration</li>
+                    </ul>
+                </article>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                <article class="service-card" data-category="development">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-mobile-alt service-icon" aria-hidden="true"></i>
                     </div>
-                    <h4 class="service-title">Mobile Apps</h4>
-                    <p class="service-desc">Native iOS and Android applications with intuitive interfaces and robust performance.</p>
-                </div>
+                    <h4 class="service-title">Mobile App Development</h4>
+                    <p class="service-description">
+                        Create native iOS and Android applications with seamless user experiences and robust functionality.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> iOS & Android Apps</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Cross-Platform Solutions</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> App Store Deployment</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Push Notifications</li>
+                    </ul>
+                </article>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-server"></i>
+                <article class="service-card" data-category="cloud">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-cloud service-icon" aria-hidden="true"></i>
                     </div>
-                    <h4 class="service-title">IT Solutions</h4>
-                    <p class="service-desc">Comprehensive IT services and enterprise solutions for businesses of all sizes.</p>
-                </div>
+                    <h4 class="service-title">Cloud Solutions</h4>
+                    <p class="service-description">
+                        Scalable cloud infrastructure and migration services for modern businesses.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> AWS/Azure/GCP Setup</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Cloud Migration</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Serverless Architecture</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Cost Optimization</li>
+                    </ul>
+                </article>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
+                <article class="service-card" data-category="consulting">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-chart-line service-icon" aria-hidden="true"></i>
                     </div>
-                    <h4 class="service-title">Cloud Services</h4>
-                    <p class="service-desc">Scalable cloud infrastructure and migration services for modern businesses.</p>
-                </div>
+                    <h4 class="service-title">IT Consulting</h4>
+                    <p class="service-description">
+                        Strategic technology consulting to optimize your business processes and digital transformation.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Digital Strategy</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Process Automation</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Technology Stack Selection</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> ROI Analysis</li>
+                    </ul>
+                </article>
+                
+                <article class="service-card" data-category="cloud">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-server service-icon" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="service-title">DevOps Services</h4>
+                    <p class="service-description">
+                        Automate deployment, scaling, and management of containerized applications.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> CI/CD Pipeline Setup</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Docker & Kubernetes</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Infrastructure as Code</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Monitoring & Logging</li>
+                    </ul>
+                </article>
+                
+                <article class="service-card" data-category="consulting">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-shield-alt service-icon" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="service-title">Cyber Security</h4>
+                    <p class="service-description">
+                        Comprehensive security solutions to protect your digital assets and data.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Security Audits</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Penetration Testing</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> Compliance & GDPR</li>
+                        <li><i class="fas fa-check" aria-hidden="true"></i> 24/7 Security Monitoring</li>
+                    </ul>
+                </article>
             </div>
-        </div>
+        </section>
         
-        <div class="contact-section">
-            <h3 class="contact-title">Start Your Project Today</h3>
-            <p class="contact-subtitle">While we're building our platform, let us build yours. Contact us for a complimentary consultation about your digital needs.</p>
-            
-            <div class="contact-person">
-                Syed Luqmaan
-            </div>
-            
-            <div class="contact-details">
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt contact-icon"></i>
-                    <span>9606398408</span>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-phone contact-icon"></i>
-                    <span>9620817001</span>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <span>contact@ariartech.com</span>
-                </div>
-            </div>
-            
-            <a href="tel:+919606398408" class="cta-button">
-                <i class="fas fa-calendar-alt"></i>
-                Book a Free Consultation
-            </a>
-        </div>
-        
-        <div class="footer">
-            <p>&copy; 2026 Ariar Technologies. All Rights Reserved. | Crafting Digital Excellence</p>
-            <p style="margin-top: 10px; color: #ff6b6b; font-size: 0.8rem;">
-                Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for Ariar Technologies
+        <!-- CONTACT SECTION -->
+        <section class="contact-section" aria-labelledby="contact-heading">
+            <h3 class="contact-title" id="contact-heading">Start Your Project Today</h3>
+            <p class="contact-subtitle">
+                While we're building our platform, let us build yours. Contact us for a complimentary consultation about your digital needs.
             </p>
-        </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info-box">
+                    <div class="contact-person-card">
+                        <div class="contact-person-name">Syed Luqmaan</div>
+                        <div class="contact-person-title">Project Director</div>
+                    </div>
+                    
+                    <div class="contact-methods">
+                        <a href="tel:+919606398408" class="contact-method" aria-label="Call primary phone number">
+                            <div class="method-icon">
+                                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>Primary Phone</h4>
+                                <p>+91 96063 98408</p>
+                            </div>
+                        </a>
+                        
+                        <a href="tel:+919620817001" class="contact-method" aria-label="Call secondary phone number">
+                            <div class="method-icon">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>Secondary Phone</h4>
+                                <p>+91 96208 17001</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:contact@ariartech.com" class="contact-method" aria-label="Send email">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>Email</h4>
+                                <p>contact@ariartech.com</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-placeholder">
+                    <div class="form-icon" aria-hidden="true">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <h4 class="form-title">Ready to Discuss Your Project?</h4>
+                    <p class="form-description">
+                        Our contact form will be available soon. In the meantime, use any of the contact methods to reach out. We typically respond within 24 hours.
+                    </p>
+                    
+                    <div class="contact-actions">
+                        <a href="https://wa.me/919606398408?text=Hi%20Ariar%20Technologies%2C%20I%20would%20like%20to%20discuss%20a%20project" 
+                           class="action-button whatsapp" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="Open WhatsApp chat">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            WhatsApp Chat
+                        </a>
+                        
+                        <a href="tel:+919606398408" class="action-button primary" aria-label="Call us now">
+                            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <p>Prefer to schedule a call? Click below to book a free consultation</p>
+                <a href="tel:+919606398408" class="action-button secondary" aria-label="Book free consultation">
+                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    Book Free Consultation
+                </a>
+            </div>
+        </section>
+        
+        <footer class="footer" role="contentinfo">
+            <p>&copy; 2026 Ariar Technologies. All Rights Reserved. | Crafting Digital Excellence</p>
+            <p class="made-with-love">
+                Made with <i class="fas fa-heart" aria-hidden="true"></i> for Ariar Technologies
+            </p>
+        </footer>
     </div>
 
     <script>
-        // Animated progress bar
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        let progress = 0;
-        const targetProgress = 82;
-        
-        function animateProgress() {
-            if (progress < targetProgress) {
-                progress += 1;
-                progressBar.style.width = `${progress}%`;
-                progressText.textContent = `${progress}%`;
-                
-                setTimeout(animateProgress, 30);
+        // Responsive JavaScript with performance optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Performance monitoring
+            const perfStart = performance.now();
+            
+            // Cache DOM elements
+            const elements = {
+                progressBar: document.getElementById('progress-bar'),
+                progressText: document.getElementById('progress-text'),
+                tagline: document.getElementById('tagline'),
+                heart: document.getElementById('heart'),
+                categoryBtns: document.querySelectorAll('.category-btn'),
+                serviceCards: document.querySelectorAll('.service-card'),
+                contactMethods: document.querySelectorAll('.contact-method'),
+                actionButtons: document.querySelectorAll('.action-button')
+            };
+            
+            // Check if elements exist
+            if (!elements.progressBar || !elements.progressText) {
+                console.warn('Progress elements not found');
+                return;
             }
-        }
-        
-        // Floating shapes animation
-        const shapesContainer = document.querySelector('.floating-shapes');
-        
-        for (let i = 0; i < 6; i++) {
-            const shape = document.createElement('div');
-            const size = Math.random() * 60 + 30;
-            const top = Math.random() * 100;
-            const left = Math.random() * 100;
-            const duration = Math.random() * 20 + 20;
-            const delay = Math.random() * 5;
-            const colors = [
-                'rgba(255, 107, 107, 0.15)',
-                'rgba(107, 107, 255, 0.15)',
-                'rgba(107, 212, 255, 0.15)'
-            ];
-            const color = colors[Math.floor(Math.random() * colors.length)];
             
-            shape.style.width = `${size}px`;
-            shape.style.height = `${size}px`;
-            shape.style.top = `${top}%`;
-            shape.style.left = `${left}%`;
-            shape.style.animationDuration = `${duration}s`;
-            shape.style.animationDelay = `${delay}s`;
-            shape.style.background = `linear-gradient(135deg, ${color}, ${color.replace('0.15', '0.08')})`;
-            shape.style.borderRadius = Math.random() > 0.5 ? '50%' : '10px';
+            // Animated progress bar with requestAnimationFrame for smoothness
+            let progress = 0;
+            const targetProgress = 82;
+            let rafId;
             
-            shape.classList.add('shape');
-            shapesContainer.appendChild(shape);
-        }
-        
-        // Service cards hover effect
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                const icon = this.querySelector('.service-icon');
-                icon.style.transform = 'scale(1.3) rotate(8deg)';
-                icon.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                const icon = this.querySelector('.service-icon');
-                icon.style.transform = 'scale(1) rotate(0deg)';
-            });
-        });
-        
-        // Contact items click functionality
-        document.querySelectorAll('.contact-item').forEach(item => {
-            if (item.textContent.includes('9606398408') || item.textContent.includes('9620817001')) {
-                item.style.cursor = 'pointer';
-                item.title = 'Click to call';
+            function animateProgress(timestamp) {
+                if (!elements.progressBar) return;
                 
-                item.addEventListener('click', function() {
-                    const phoneNumber = this.textContent.trim().replace(/\s+/g, '');
-                    window.location.href = `tel:${phoneNumber}`;
-                });
-            }
-        });
-        
-        // Typing effect for tagline
-        const taglineText = "Innovating Tomorrow's Digital Landscape";
-        const taglineElement = document.querySelector('.tagline');
-        let taglineIndex = 0;
-        
-        function typeTagline() {
-            if (taglineIndex < taglineText.length) {
-                taglineElement.textContent = taglineText.substring(0, taglineIndex + 1);
-                taglineIndex++;
-                setTimeout(typeTagline, 70);
-            }
-        }
-        
-        // Heart click celebration
-        const heart = document.getElementById('heart');
-        heart.addEventListener('click', createParticles);
-        
-        function createParticles() {
-            const colors = ['#ff6b6b', '#6b6bff', '#6bd4ff', '#ffd66b'];
-            
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const size = Math.random() * 10 + 5;
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const animationDuration = Math.random() * 2 + 1;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.backgroundColor = color;
-                particle.style.left = `${left}%`;
-                particle.style.top = `${top}%`;
-                particle.style.boxShadow = `0 0 10px ${color}`;
-                
-                // Add to body
-                document.body.appendChild(particle);
-                
-                // Animate
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 100 + 50;
-                const vx = Math.cos(angle) * velocity;
-                const vy = Math.sin(angle) * velocity;
-                
-                let x = left;
-                let y = top;
-                let opacity = 1;
-                
-                function animateParticle() {
-                    x += vx * 0.01;
-                    y += vy * 0.01;
-                    opacity -= 0.02;
+                if (progress < targetProgress) {
+                    progress += 1;
+                    elements.progressBar.style.width = `${progress}%`;
+                    elements.progressBar.setAttribute('aria-valuenow', progress);
+                    elements.progressText.textContent = `${progress}%`;
                     
-                    particle.style.left = `${x}%`;
-                    particle.style.top = `${y}%`;
-                    particle.style.opacity = opacity;
-                    
-                    if (opacity > 0) {
-                        requestAnimationFrame(animateParticle);
-                    } else {
-                        particle.remove();
+                    // Use RAF for smooth animation
+                    rafId = requestAnimationFrame(() => {
+                        setTimeout(animateProgress, 30);
+                    });
+                } else {
+                    cancelAnimationFrame(rafId);
+                }
+            }
+            
+            // Typing effect for tagline
+            function typeTagline() {
+                if (!elements.tagline) return;
+                
+                const taglineText = "Innovating Tomorrow's Digital Landscape";
+                let taglineIndex = 0;
+                
+                function typeCharacter() {
+                    if (taglineIndex < taglineText.length) {
+                        elements.tagline.textContent = taglineText.substring(0, taglineIndex + 1);
+                        taglineIndex++;
+                        setTimeout(typeCharacter, 70);
                     }
                 }
                 
-                animateParticle();
+                typeCharacter();
             }
             
-            // Change heart color temporarily
-            heart.style.color = '#ffd66b';
-            setTimeout(() => {
-                heart.style.color = '#ff6b6b';
-            }, 300);
-        }
-        
-        // Start animations when page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            // Start progress animation after delay
-            setTimeout(animateProgress, 800);
+            // Service category filtering
+            function initCategoryFiltering() {
+                elements.categoryBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        // Update active button
+                        elements.categoryBtns.forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-selected', 'false');
+                        });
+                        this.classList.add('active');
+                        this.setAttribute('aria-selected', 'true');
+                        
+                        const category = this.getAttribute('data-category');
+                        
+                        // Filter service cards with smooth transition
+                        elements.serviceCards.forEach(card => {
+                            const cardCategory = card.getAttribute('data-category');
+                            
+                            if (category === 'all' || cardCategory === category) {
+                                card.style.display = 'block';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'translateY(0)';
+                                }, 10);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(20px)';
+                                setTimeout(() => {
+                                    card.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                    });
+                });
+            }
             
-            // Start typing effect
-            setTimeout(() => {
-                taglineElement.textContent = "";
-                typeTagline();
-            }, 1000);
+            // Heart click celebration
+            function initHeartAnimation() {
+                if (!elements.heart) return;
+                
+                elements.heart.addEventListener('click', createParticles);
+                elements.heart.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        createParticles();
+                    }
+                });
+            }
             
-            // Add subtle pulse animation to CTA button
-            const ctaButton = document.querySelector('.cta-button');
-            setInterval(() => {
-                ctaButton.style.transform = 'translateY(-5px) scale(1.02)';
-                setTimeout(() => {
-                    ctaButton.style.transform = 'translateY(-5px) scale(1)';
-                }, 500);
-            }, 3000);
-            
-            // Auto create particles every 5 seconds
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    createParticles();
+            function createParticles() {
+                // Simple particle effect for performance
+                const colors = ['#14B8A6', '#0A2540', '#25D366'];
+                
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    const color = colors[i % colors.length];
+                    
+                    particle.style.cssText = `
+                        position: fixed;
+                        width: 6px;
+                        height: 6px;
+                        background: ${color};
+                        border-radius: 50%;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        z-index: 100;
+                        pointer-events: none;
+                        opacity: 1;
+                    `;
+                    
+                    document.body.appendChild(particle);
+                    
+                    // Simple fade out animation
+                    let opacity = 1;
+                    const fadeOut = () => {
+                        opacity -= 0.02;
+                        particle.style.opacity = opacity;
+                        
+                        if (opacity > 0) {
+                            requestAnimationFrame(fadeOut);
+                        } else {
+                            particle.remove();
+                        }
+                    };
+                    
+                    requestAnimationFrame(fadeOut);
                 }
-            }, 5000);
-        });
-        
-        // Add gentle hover effect to container
-        const container = document.querySelector('.container');
-        container.addEventListener('mouseenter', () => {
-            container.style.transform = 'translateY(-5px)';
-            container.style.transition = 'transform 0.3s ease';
-        });
-        
-        container.addEventListener('mouseleave', () => {
-            container.style.transform = 'translateY(0)';
+                
+                // Change heart color temporarily
+                if (elements.heart) {
+                    elements.heart.style.color = '#FF6B8B';
+                    setTimeout(() => {
+                        elements.heart.style.color = '';
+                    }, 300);
+                }
+            }
+            
+            // Optimize hover effects for touch devices
+            function optimizeTouchInteractions() {
+                const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+                
+                if (isTouchDevice) {
+                    // Add touch feedback
+                    elements.serviceCards.forEach(card => {
+                        card.addEventListener('touchstart', function() {
+                            this.style.transform = 'scale(0.98)';
+                        });
+                        
+                        card.addEventListener('touchend', function() {
+                            this.style.transform = '';
+                        });
+                    });
+                }
+            }
+            
+            // Initialize everything
+            function init() {
+                // Start progress animation with delay
+                setTimeout(() => {
+                    requestAnimationFrame(animateProgress);
+                }, 800);
+                
+                // Start typing effect
+                setTimeout(typeTagline, 1000);
+                
+                // Initialize category filtering
+                initCategoryFiltering();
+                
+                // Initialize heart animation
+                initHeartAnimation();
+                
+                // Optimize for touch
+                optimizeTouchInteractions();
+                
+                // Performance log
+                const perfEnd = performance.now();
+                console.log(`Page initialized in ${(perfEnd - perfStart).toFixed(2)}ms`);
+            }
+            
+            // Start initialization
+            init();
+            
+            // Handle viewport changes
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    // Recalculate any dynamic layouts if needed
+                }, 250);
+            });
+            
+            // Handle page visibility
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    // Page became visible again
+                }
+            });
         });
     </script>
 </body>
